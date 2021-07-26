@@ -16,9 +16,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class DogResponseDto {
-	
+	private Long id;
 	private String name;
 	private Integer age;
-	private Person person;
+	private PersonResponseDto personResponseDto;
 	
 }
