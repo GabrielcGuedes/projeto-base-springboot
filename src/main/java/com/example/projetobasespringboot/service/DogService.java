@@ -35,7 +35,7 @@ public class DogService {
 	
 	public DogResponseDto saveDog(DogRequestDto dogDto) {
 		Dog dog = ConversionDto.fromDto(dogDto);
-//		dog.setPerson(personRepository.findById(dog.getPerson().getId()).get()); 
+		dog.setPerson(personRepository.findById(dog.getPerson().getId()).get()); 
 		dogRepository.save(dog);
 		return ConversionDto.toDto(dog);
 	}

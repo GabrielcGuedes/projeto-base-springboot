@@ -34,9 +34,6 @@ public class Dog {
 	@JoinColumn(name = "person_id")
 	private Person person;
 	
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JoinTable(name = "dogs_toys",
-				joinColumns = {@JoinColumn(name = "dog_id")},
-				inverseJoinColumns = {@JoinColumn (name = "toy_id")})
+	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "dogs")
 	private List<Toy> toys;
 }
