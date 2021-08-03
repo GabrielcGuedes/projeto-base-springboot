@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 
 import com.example.projetobasespringboot.dto.DogRequestDto;
 import com.example.projetobasespringboot.dto.DogResponseDto;
+import com.example.projetobasespringboot.handle.RestExceptionHandler;
 import com.example.projetobasespringboot.model.Dog;
 import com.example.projetobasespringboot.repository.DogRepository;
 import com.example.projetobasespringboot.repository.PersonRepository;
@@ -22,7 +26,8 @@ public class DogService {
 	@Autowired
 	PersonRepository personRepository;
 	
-	public List<DogResponseDto> getAll(){
+	public Object getAll(){
+		try {
 		List<Dog> dogSearched = dogRepository.findAll();
 		List<DogResponseDto> dogDto = new ArrayList<>();
 		
@@ -31,6 +36,9 @@ public class DogService {
 		}
 				
 		return dogDto;
+		}catch (Exception e) {
+			return e.getMessage();
+		}
 	}
 	
 	public DogResponseDto saveDog(DogRequestDto dogDto) {
